@@ -57,7 +57,7 @@ brew install helm
 ## Deploying the application. Imperative approach.
 
 ```
-> kubectl create deployment myapp --image=myapp:v1
+> kubectl create deployment myapp --image=cr.yandex/crpab8haeuaugm6uqa9a/myapp:v1
 
 > kubectl expose deployment/myapp --port=8080 --target-port=80
 ```
@@ -99,7 +99,7 @@ brew install helm
 ```
 > kubectl scale deployments/myapp --replicas=4
 
-> kubectl set image deployments/myapp my-app=my-app:v2
+> kubectl set image deployments/myapp myapp=cr.yandex/crpab8haeuaugm6uqa9a/myapp:v2
 
 > kubectl rollout status deployments/myapp
 
