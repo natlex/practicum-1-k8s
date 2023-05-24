@@ -54,7 +54,7 @@ brew install helm
 > kubens <my_namespace>
 ```
 
-## Deploy the application. Imperative approach.
+## Deploying the application. Imperative approach.
 
 ```
 > kubectl create deployment myapp --image=myapp:v1
@@ -94,7 +94,7 @@ brew install helm
 > kubectl port-forward svc/myapp 8080:80
 ```
 
-## Modify resources
+## Modifying resources
 
 ```
 > kubectl scale deployments/myapp --replicas=4
@@ -108,7 +108,7 @@ brew install helm
 > kubectl autoscale deployment myapp --cpu-percent=50 --min=2 --max=10
 ```
 
-## Clean up
+## Cleaning up
 
 ```
 > kubectl delete po <pod-name>
@@ -116,7 +116,7 @@ brew install helm
 > kubectl delete deployments/myapp services/myapp
 ```
 
-## Manage the application. Declarative approach
+## Managing the application. Declarative approach
 
 ```
 > kubectl create deployment myapp --image=myapp:v1 --dry-run=client -o yaml > deployment.yaml
