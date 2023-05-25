@@ -46,9 +46,13 @@ brew install helm
 
 -) Install Lens (https://k8slens.dev/desktop.html)
 
-## Create a sandbox
+## Creating a sandbox
 
 ```
+kubectl config view
+
+kubectl config get-contexts
+
 kubectl create ns <my_namespace>
 
 kubens <my_namespace>
