@@ -57,7 +57,7 @@ brew install helm
 ## Deploying the application. Imperative approach.
 
 ```
-> kubectl create deployment myapp --image=cr.yandex/crpab8haeuaugm6uqa9a/myapp:v1
+> kubectl create deployment myapp --image=cr.yandex/crpab8haeuaugm6uqa9a/myapp:1.0.0
 
 > kubectl expose deployment/myapp --port=8080 --target-port=80
 ```
@@ -89,7 +89,7 @@ brew install helm
 
 > kubectl exec -it <pod-name> -- bash
 
-> kubectl port-forward <pod-name> 8080:8080
+> kubectl port-forward <pod-name> 8080:3000
 
 > kubectl port-forward svc/myapp 8080:80
 ```
@@ -99,7 +99,7 @@ brew install helm
 ```
 > kubectl scale deployments/myapp --replicas=4
 
-> kubectl set image deployments/myapp myapp=cr.yandex/crpab8haeuaugm6uqa9a/myapp:v2
+> kubectl set image deployments/myapp myapp=cr.yandex/crpab8haeuaugm6uqa9a/myapp:2.0.0
 
 > kubectl rollout status deployments/myapp
 
@@ -123,14 +123,19 @@ brew install helm
 
 > kubectl expose deployment/myapp --port=8080 --target-port=80 --dry-run=client -o yaml > service.yaml
 
-```
-
-Add the followwing to the manifests:
-```
-```
-
-```
 > kubectl apply -f ./
 ```
 
 ## Helm
+
+```
+> helm repo add bitnami https://charts.bitnami.com/bitnami
+
+> helm dependency update
+
+> helm template ./charts/myapp
+
+> helm upgrade -i myapp ./charts/myapp
+
+> helm upgrade -i --set redis.enabled=true --set envVars.redisHost=myapp-redis-master myapp ./charts/myapp
+```

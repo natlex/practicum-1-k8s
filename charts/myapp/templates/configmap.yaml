@@ -1,0 +1,13 @@
+{{- define "myapp.configmap.content" -}}
+{{- with .Values.envVars }}
+{{- tpl (toYaml .) $ | trim }}
+{{- end }}
+{{- end -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "myapp.fullname" . }}
+  labels:
+    {{- include "myapp.labels" . | nindent 4 }}
+data: {{ include "myapp.configmap.content" . | nindent 2 }}
