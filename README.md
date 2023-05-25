@@ -67,8 +67,6 @@ kubectl expose deployment/myapp --port=80 --target-port=3000
 ```
 kubectl get pods
 
-kubectl get pods --show-labels
-
 kubectl get deploy,rs,po -l app=myapp
 
 kubectl get pod <pod-name> -o yaml
