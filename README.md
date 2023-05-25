@@ -59,7 +59,7 @@ brew install helm
 ```
 > kubectl create deployment myapp --image=cr.yandex/crpab8haeuaugm6uqa9a/myapp:1.0.0
 
-> kubectl expose deployment/myapp --port=8080 --target-port=80
+> kubectl expose deployment/myapp --port=80 --target-port=3000
 ```
 
 ## Viewing resources
@@ -121,7 +121,7 @@ brew install helm
 ```
 > kubectl create deployment myapp --image=myapp:v1 --dry-run=client -o yaml > deployment.yaml
 
-> kubectl expose deployment/myapp --port=8080 --target-port=80 --dry-run=client -o yaml > service.yaml
+> kubectl expose deployment/myapp --port=80 --target-port=3000 --dry-run=client -o yaml > service.yaml
 
 > kubectl apply -f ./
 ```
