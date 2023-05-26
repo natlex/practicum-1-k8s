@@ -153,5 +153,7 @@ helm template ./charts/myapp
 
 helm upgrade -i myapp ./charts/myapp
 
-helm upgrade -i --set redis.enabled=true --set envVars.redisHost=myapp-redis-master myapp ./charts/myapp
+helm upgrade -i --set redis.enabled=true myapp ./charts/myapp
+
+helm upgrade -i --set redis.enabled=true --set envVars.redisHost=<redis-address> myapp ./charts/myapp
 ```
