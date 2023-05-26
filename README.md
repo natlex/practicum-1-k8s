@@ -124,22 +124,28 @@ kubectl rollout undo deployments/myapp
 kubectl autoscale deployment myapp --cpu-percent=50 --min=2 --max=10
 ```
 
+## Managing the application. Declarative approach
+
+```
+mkdir k8s
+
+kubectl create deployment myapp --image=cr.yandex/crpab8haeuaugm6uqa9a/myapp:1.0.0 --dry-run=client -o yaml > ./k8s/deployment.yaml
+
+kubectl expose deployment/myapp --port=80 --target-port=3000 --dry-run=client -o yaml > ./k8s/service.yaml
+
+kubectl apply -f ./k8s
+```
+
 ## Cleaning up
 
 ```
 kubectl delete po <pod-name>
 
 kubectl delete deployments/myapp services/myapp
-```
 
-## Managing the application. Declarative approach
+kubectl delete -f ./k8s
 
-```
-kubectl create deployment myapp --image=myapp:v1 --dry-run=client -o yaml > deployment.yaml
-
-kubectl expose deployment/myapp --port=80 --target-port=3000 --dry-run=client -o yaml > service.yaml
-
-kubectl apply -f ./
+kubectl delete ns <my-namespace>
 ```
 
 ## Helm
@@ -155,5 +161,5 @@ helm upgrade -i myapp ./charts/myapp
 
 helm upgrade -i --set redis.enabled=true myapp ./charts/myapp
 
-helm upgrade -i --set redis.enabled=true --set envVars.redisHost=<redis-address> myapp ./charts/myapp
+helm upgrade -i --set redis.enabled=true --set envVars.redisHost=redis-master-0 myapp ./charts/myapp
 ```
